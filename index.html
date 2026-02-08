@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EL ALAMYA ELECTROMECHANICAL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      @font-face {
+        font-family: 'Omar';
+        src: url('./Omar-Bold-1.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      body {
+        font-family: 'Tajawal', sans-serif;
+        cursor: none;
+      }
+      
+      [dir="rtl"] body,
+      html[lang="ar"] body {
+        font-family: 'Omar', 'Tajawal', sans-serif;
+      }
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+      
+      /* Technical Crosshair Cursor */
+      .cursor-dot {
+        width: 4px;
+        height: 4px;
+        background-color: #e11d48;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .cursor-outline {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(59, 130, 246, 0.5);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cursor-outline::before, .cursor-outline::after {
+        content: '';
+        position: absolute;
+        background: rgba(59, 130, 246, 0.3);
+      }
+      .cursor-outline::before { width: 100%; height: 1px; }
+      .cursor-outline::after { width: 1px; height: 100%; }
+
+      @media (max-width: 1024px) {
+        body { cursor: auto; }
+        .cursor-dot, .cursor-outline { display: none; }
+      }
+      
+      .bg-grid {
+        background-image: 
+          linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+
+      /* Sharp Border Utility */
+      .border-sharp {
+        border-radius: 0 !important;
+      }
+
+      /* Custom Scrollbar */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(30, 58, 138, 0.2);
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #dc2626, #991b1b);
+        border-radius: 0;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #991b1b, #7f1d1d);
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+          "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+          "react/": "https://esm.sh/react@^19.2.4/",
+          "react": "https://esm.sh/react@^19.2.4"
+        }
+      }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-white text-gray-900 overflow-x-hidden">
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+    <div id="root"></div>
+    <script>
+      const dot = document.getElementById('cursor-dot');
+      const outline = document.getElementById('cursor-outline');
+      window.addEventListener('mousemove', (e) => {
+        dot.style.left = e.clientX - 2 + 'px';
+        dot.style.top = e.clientY - 2 + 'px';
+        outline.style.left = e.clientX - 15 + 'px';
+        outline.style.top = e.clientY - 15 + 'px';
+      });
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
